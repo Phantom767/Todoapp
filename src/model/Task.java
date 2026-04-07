@@ -1,6 +1,7 @@
 package model;
 
 import java.util.UUID;
+
 public class Task {
     private final UUID id;
     private final String title;
@@ -14,24 +15,23 @@ public class Task {
 
     // Геттеры и сеттеры
     public UUID getId() {
-        return id; }
+        return id;
+    }
+
     public String getTitle() {
-        return title; }
+        return title;
+    }
+
     public Status getStatus() {
-        return status; }
+        return status;
+    }
+
     public void setStatus(Status status) {
-        this.status = status; }
+        this.status = status;
+    }
 
     @Override
     public String toString() {
-
         return String.format("[%s] %-20s | Статус: %s", id, title, status);
     }
-
-    // Для сохранения в файл
-    public String toFileString() {
-
-        return id + ";" + title + ";" + status;
-    }
 }
-

@@ -36,7 +36,12 @@ public class Main {
                         System.out.println("Название не должно содержать символ ';', так как он используется для сохранения.");
                         break;
                     }
-                    manager.addTask(title);
+                    if (manager.isTaskExists(title)) {
+                        System.out.println("Ошибка: Задача с таким названием уже существует!");
+                    } else {
+                        manager.addTask(title);
+                        System.out.println("Задача добавлена.");
+                    }
                     break;
                 case 3:
                     System.out.print("ID задачи: ");
@@ -48,14 +53,14 @@ public class Main {
                         continue;
                     }
                     System.out.println("1. NEW | 2. IN_PROGRESS | 3. DONE");
-                    int s;
+                    int statusChoice;
                     try {
-                        s = Integer.parseInt(scanner.nextLine());
+                        statusChoice = Integer.parseInt(scanner.nextLine());
                     } catch (NumberFormatException e) {
                         System.out.println("Ошибка: нужно ввести цифру (1-3).");
                         continue;
                     }
-                    Status status = (s == 2) ? Status.IN_PROGRESS : (s == 3) ? Status.DONE : Status.NEW;
+                    Status status = (statusChoice == 2) ? Status.IN_PROGRESS : (statusChoice == 3) ? Status.DONE : Status.NEW;
                     manager.changeStatus(id, status);
                     break;
                 case 4:
